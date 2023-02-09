@@ -160,7 +160,7 @@ export function Main() {
                     <Empty />
 
                     <Text color="#666" style={{ marginTop: 24 }}>
-                  Nenhum produto foi encontrado!
+                      Nenhum produto foi encontrado!
                     </Text>
                   </CenteredContainer>
                 )}
@@ -189,6 +189,7 @@ export function Main() {
               onAdd = {handleAddToCart}
               onDecrement={handleDecrementCartItem}
               onConfirmOrder={handleResetOrder}
+              selectedTable={selectedTable}
             />
           )}
         </FooterContainer>
