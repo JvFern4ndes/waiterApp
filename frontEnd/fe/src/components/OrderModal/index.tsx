@@ -11,9 +11,17 @@ interface OrderModalProps{
   onClose: () => void;
   onCancelOrder: () => Promise<void>;
   isLoading: boolean;
+  onChangeOrderStatus: () => void;
 }
 
-export function OrderModal({ visible, order, onClose, onCancelOrder, isLoading }: OrderModalProps) {
+export function OrderModal({
+  visible,
+  order,
+  onClose,
+  onCancelOrder,
+  isLoading,
+  onChangeOrderStatus
+}: OrderModalProps) {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -93,14 +101,17 @@ export function OrderModal({ visible, order, onClose, onCancelOrder, isLoading }
         </OrderDetails>
 
         <Actions>
-          <button
-            type="button"
-            className="primary"
-            disabled={isLoading}
-          >
-            <span>🧑‍🍳️</span>
-            <strong>Iniciar Produção</strong>
-          </button>
+          {order.status !== 'DONE' && (
+            <button
+              type="button"
+              className="primary"
+              disabled={isLoading}
+              onClick={onChangeOrderStatus}
+            >
+              <span>🧑‍🍳️</span>
+              <strong>Iniciar Produção</strong>
+            </button>
+          )}
 
           <button
             type="button"
